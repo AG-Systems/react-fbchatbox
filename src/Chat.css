@@ -1,0 +1,73 @@
+.chat
+{
+  background-color: white;
+  width: 276px;
+  height: 345px;
+  color: black;
+}
+.chat-navbar
+{
+  background-color: #f2f2f2;
+  width: 276px;
+  height: 28px;
+  color: black;
+}
+
+#chattitle
+{
+  padding: 5px;
+}
+#chatlogs
+{
+  height: 275px;
+  width: 276px;
+}
+#input-fields
+{
+  width: 276px;
+  height: 57px;
+}
+input
+{
+  width: 100%;
+    border: none;
+    background-color: transparent;
+}
+#icons
+{
+  float: right;
+}
+.glyphicon
+{
+  padding-left: 7px;
+  padding-right: 7px;
+  float: right;
+}
+#bottom
+{
+
+}
+
+span.speech {
+  position: relative;
+  width: 200px;
+  /*
+  height: 50px;
+  line-height: 50px;
+  */
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-box-shadow: 2px 2px 4px #888;
+  -moz-box-shadow: 2px 2px 4px #888;
+  box-shadow: 2px 2px 4px #888;
+}
+#active
+{
+    /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/0e/Ski_trail_rating_symbol-green_circle.svg"); */
+    border-radius: 50%;
+    height: 6px;
+    margin: 0 3px 1px 0;
+    vertical-align: middle;
+    width: 6px;
+}
