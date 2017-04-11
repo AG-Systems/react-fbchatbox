@@ -18,12 +18,11 @@ class Chatlist extends Component {
     {
       if(chatnames.indexOf(name) === -1)
       {
-
+        chatnames.push(name);
+        chatcolors.push(color);
+        chatid.push(id);
+        chatactive.push(active);
       }
-          chatnames.push(name);
-          chatcolors.push(color);
-          chatid.push(id);
-          chatactive.push(active);
       console.log(chatnames);
       activecolor=color;
       activeid=id;
@@ -79,8 +78,6 @@ class Chatlist extends Component {
                     <span className="lastactive"><span hidden={contact.active !== "yes"}><img 
                     src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Ski_trail_rating_symbol-green_circle.svg" 
                      height="7px" width="7px" />
-                    
-                    
                     </span>
                     <span hidden={contact.active === "yes"}>{contact.active}m</span>
                     </span></li></span>
@@ -91,9 +88,13 @@ class Chatlist extends Component {
               </div>
             </div>
           </div>
-          <div style={style3}>
-              <Chat name={chatnames[0]} active={chatactive[0]} color={chatcolors[0]} id={chatid[0]} />
-              <Chat name={chatnames[1]} active={chatactive[1]} color={chatcolors[1]} id={chatid[1]} />
+          <div style={style3} hidden={chatnames.length === 0}>
+              <div hidden={chatnames.length < 1}>
+                  <Chat name={chatnames[0]} active={chatactive[0]} color={chatcolors[0]} id={chatid[0]} />
+              </div>
+              <div hidden={chatnames.length < 2}>
+                    <Chat name={chatnames[1]} active={chatactive[1]} color={chatcolors[1]} id={chatid[1]} />
+              </div>
           </div>
       </div>
       )
