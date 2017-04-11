@@ -29,7 +29,7 @@ class Chatlogs extends Component {
           {chatlogs.map( message =>
                       <li key={message.id} ><img src={message.picture} hidden={message.name === "Me"}/>
                       <span className="speech" style={mychat} hidden={message.name === "Me"}> {message.message} </span>
-                      <span className="speech mychat" style={otherchat} hidden={message.name !== "Me"}> &nbsp; {message.message} </span>
+                      <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={message.name !== "Me"}> &nbsp; {message.message} </span>
                       </li>
                       
           )}
@@ -46,19 +46,29 @@ class Chat extends Component {
     $("#"+mainid).hide();
     
   };
-  color(activecolor)
+  color(activecolor,id)
   {
      colorofchat = {
       backgroundColor: activecolor,
       color: "white"
     };
+    for(var z = 0; z < 3; z++)
+    {
+          if(z !== id) 
+          {
+            $("#tab"+z).css("backgroundColor","#f2f2f2");
+            $("#tab"+z).css("color","black");
+          }
+    }
+    $("#tab"+id).css("backgroundColor",activecolor);
+    $("#tab"+id).css("color","white");  
     chatcolor = activecolor;
     this.forceUpdate();
   };
   render() {
         return (
-          <div className={"chat " + this.props.id} hidden={this.props.name === ""} onClick={() => this.color(this.props.color)} id={this.props.id}>
-            <div className={"chat-navbar " + this.props.id} style={colorofchat}>
+          <div className={"chat " + this.props.id} hidden={this.props.name === ""} onClick={() => this.color(this.props.color, this.props.id)} id={this.props.id}>
+            <div className={"chat-navbar " + this.props.id} id={"tab"+this.props.id} style={colorofchat}>
             <p id="chattitle"><span className="active">
             <img height="7px" width="7px" hidden={this.props.active != "yes"}
             src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Ski_trail_rating_symbol-green_circle.svg"

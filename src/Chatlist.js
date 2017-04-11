@@ -10,37 +10,43 @@ var chatcolors = [];
 var chatid = [];
 var chatactive = [];
 var activecolor = "#f2f2f2";
+var unactive = ""
 var activeid=0;
-var title = "";
-var activity = "";
 
 class Chatlist extends Component {
     currentchat (name,id,active,color)
     {
       if(chatnames.indexOf(name) === -1)
       {
-        chatnames.push(name);
-        chatcolors.push(color);
-        // chatid.push(id);
-        chatactive.push(active);
+
       }
-      title=name;
-      activity=active;
+          chatnames.push(name);
+          chatcolors.push(color);
+          chatid.push(id);
+          chatactive.push(active);
+      console.log(chatnames);
       activecolor=color;
-      chatid=id;
-      $(".chat-navbar").css("backgroundColor",activecolor);
-      $(".chat-navbar").css("color","white");
+      activeid=id;
+      for(var z = 0; z < 3; z++)
+      {
+          if(z !== id) 
+          {
+            $("#tab"+z).css("backgroundColor","#f2f2f2");
+            $("#tab"+z).css("color","black");
+          }
+      }
+      $("#tab"+id).css("backgroundColor",activecolor);
+      $("#tab"+id).css("color","white");
       $("#"+id).show();
       $(".chat "+id).show();
-      $(".mychat").css("backgroundColor",activecolor);
-      activeid = id;
+      // $(".mychat").css("backgroundColor",activecolor);
       this.forceUpdate();
     }
     changecolor(active, id)
     {
       activecolor = "#f2f2f2";
-      $(".chat-navbar "+id).css("backgroundColor",activecolor);
-      $(".chat-navbar "+id).css("color","black");
+      $(".chat-navbar").css("backgroundColor",activecolor);
+      $(".chat-navbar").css("color","black");
     }
     render() {
     var style1 = {
@@ -86,7 +92,8 @@ class Chatlist extends Component {
             </div>
           </div>
           <div style={style3}>
-              <Chat name={title} active={activity} color={activecolor} id={chatid}/>
+              <Chat name={chatnames[0]} active={chatactive[0]} color={chatcolors[0]} id={chatid[0]} />
+              <Chat name={chatnames[1]} active={chatactive[1]} color={chatcolors[1]} id={chatid[1]} />
           </div>
       </div>
       )
