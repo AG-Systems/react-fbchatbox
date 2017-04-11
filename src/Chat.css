@@ -62,7 +62,7 @@ span.speech {
   -moz-box-shadow: 2px 2px 4px #888;
   box-shadow: 2px 2px 4px #888;
 }
-#active
+.active
 {
     /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/0e/Ski_trail_rating_symbol-green_circle.svg"); */
     border-radius: 50%;
@@ -70,4 +70,9 @@ span.speech {
     margin: 0 3px 1px 0;
     vertical-align: middle;
     width: 6px;
+}
+
+.active img
+{
+    margin-top: -5px;
 }

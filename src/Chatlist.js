@@ -5,19 +5,24 @@ import contacts from './contacts.json';
 import Chat from './Chat';
 import $ from 'jquery';
 
-var current = [];
+var chatnames = [];
+var chatcolors = [];
+var chatid = [];
+var chatactive = [];
+var activecolor = "#f2f2f2";
+var activeid=0;
 var title = "";
 var activity = "";
-var activecolor = "#f2f2f2";
-var chatid = 0;
-
 
 class Chatlist extends Component {
     currentchat (name,id,active,color)
     {
-      if(current.indexOf(name) === -1)
+      if(chatnames.indexOf(name) === -1)
       {
-        current.push(name);
+        chatnames.push(name);
+        chatcolors.push(color);
+        // chatid.push(id);
+        chatactive.push(active);
       }
       title=name;
       activity=active;
@@ -26,14 +31,16 @@ class Chatlist extends Component {
       $(".chat-navbar").css("backgroundColor",activecolor);
       $(".chat-navbar").css("color","white");
       $("#"+id).show();
-      console.log(activecolor);
+      $(".chat "+id).show();
+      $(".mychat").css("backgroundColor",activecolor);
+      activeid = id;
       this.forceUpdate();
     }
-    changecolor(active)
+    changecolor(active, id)
     {
       activecolor = "#f2f2f2";
-      $(".chat-navbar").css("backgroundColor",activecolor);
-      $(".chat-navbar").css("color","black");
+      $(".chat-navbar "+id).css("backgroundColor",activecolor);
+      $(".chat-navbar "+id).css("color","black");
     }
     render() {
     var style1 = {
@@ -52,7 +59,7 @@ class Chatlist extends Component {
     return (
       <div style={style1}>
           <div className="chatlist" style={style2}>
-            <div className="chatlist-navbar" onClick={() => this.changecolor(activecolor)}>
+            <div className="chatlist-navbar" onClick={() => this.changecolor(activecolor,activeid)}>
             <p id="chattitle"> Chat 
             <span className="glyphicon glyphicon-cog"></span><span className="glyphicon glyphicon-pencil">
             </span>
@@ -63,7 +70,7 @@ class Chatlist extends Component {
               <ul>
               {contacts.map( contact =>
                     <span><li id="contact" key={contact.id} onClick={() => this.currentchat(contact.name, contact.id, contact.active, contact.color)}><img src={contact.picture} /> {contact.name } 
-                    <span className="lastactive"><span hidden={contact.active != "yes"}><img 
+                    <span className="lastactive"><span hidden={contact.active !== "yes"}><img 
                     src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Ski_trail_rating_symbol-green_circle.svg" 
                      height="7px" width="7px" />
                     
