@@ -8,7 +8,7 @@ import $ from "jquery";
 var currentuser = "";
 
 var colorofchat = {
-  backgroundColor: "#f2f2f2",
+  /* backgroundColor: "#f2f2f2", */
   color: "black"
 };
 class Chatlogs extends Component {

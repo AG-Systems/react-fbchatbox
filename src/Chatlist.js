@@ -23,18 +23,19 @@ class Chatlist extends Component {
       activity=active;
       activecolor=color;
       chatid=id;
+      $(".chat-navbar").css("backgroundColor",activecolor);
+      $(".chat-navbar").css("color","white");
       $("#"+id).show();
+      console.log(activecolor);
       this.forceUpdate();
     }
     changecolor(active)
     {
-      var colorofchat = {
-        backgroundColor: "#f2f2f2",
-        color: "black"
-      };
+      activecolor = "#f2f2f2";
+      $(".chat-navbar").css("backgroundColor",activecolor);
+      $(".chat-navbar").css("color","black");
     }
     render() {
-    console.log(current);
     var style1 = {
       width: "100%",
       overflow: "hidden"
@@ -50,12 +51,14 @@ class Chatlist extends Component {
     
     return (
       <div style={style1}>
-          <div className="chatlist" style={style2} onClick={() => this.changecolor(activecolor)}>
-            <div className="chatlist-navbar">
-            <p id="chattitle"> Chat <span className="glyphicon glyphicon-cog"></span><span className="glyphicon glyphicon-pencil"></span>
+          <div className="chatlist" style={style2}>
+            <div className="chatlist-navbar" onClick={() => this.changecolor(activecolor)}>
+            <p id="chattitle"> Chat 
+            <span className="glyphicon glyphicon-cog"></span><span className="glyphicon glyphicon-pencil">
+            </span>
             </p>
             </div>
-            <div className="chatlist">
+            <div className="chatlist" >
               <p> CONTACTS </p>
               <ul>
               {contacts.map( contact =>
