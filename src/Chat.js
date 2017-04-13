@@ -90,6 +90,31 @@ class Card extends Component {
   }
 }
 
+class Payment extends Component
+{
+  render(){
+    var cardstyle={
+        height: "299px",
+        width: "278px",
+        backgroundColor: "white",
+        zIndex: 100,
+        boxShadow: "0 0 0 1px rgba(0, 0, 0, .1), 0 1px 10px rgba(0, 0, 0, .35)",
+        marginLeft: "150px",
+        position: "absolute",
+        marginTop: "-300px",
+        overflowY: "hidden",
+        overflowX: "hidden",
+      };
+    return(
+      <div style={cardstyle} hidden={true} id="pay">
+          <div id="pay-title">Send Money to Anyone</div>
+              <div id="pay-sub">Split dinner, pay rent or anything else</div>
+             <hr />
+             <button>Next</button>
+      </div>
+      );
+  }
+}
 class Chatlogs extends Component {
   render() {
     var otherchat = {
@@ -127,7 +152,8 @@ class Chat extends Component {
   {
     name = "";
     $("#"+mainid).hide();
-    
+    $("#card").hide();
+    $("#pay").hide();
   };
   gif()
   {
@@ -145,7 +171,7 @@ class Chat extends Component {
                 imageurl[4] = response.data[4].images.fixed_height.url;
             }
         });
-      
+      $("#pay").hide();      
       $("#card").toggle();
   };
   sendphoto()
@@ -182,6 +208,14 @@ class Chat extends Component {
   hide()
   {
       $("#card").hide();
+      $("#pay").hide();
+    
+  };
+  money()
+  {
+    $("#card").hide();
+    $("#pay").toggle();
+
   };
   render() {
     var hiddenstyle={
@@ -206,12 +240,14 @@ class Chat extends Component {
                 <Chatlogs convo={this.props.name}/>
               </div>
             <Card />
+            <Payment />
             <div id="input-fields">
               <input placeholder="Type a message..." />
               <span className="glyphicon glyphicon-thumbs-up" id="bottom"></span>
               <span className="glyphicon glyphicon-camera" id="bottom" onClick={this.camera}></span> 
               <span className="glyphicon glyphicon-paperclip" id="bottom"></span> 
               <span className="glyphicon glyphicon-folder-open" id="bottom" type='file' onClick={this.sendphoto}></span> 
+              <span className="glyphicon glyphicon-usd" id="bottom" onClick={this.money}></span> 
               <span className="glyphicon glyphicon-expand" id="bottom" onClick={this.gif}></span> 
             </div>
             <input type='file' style={hiddenstyle}  />

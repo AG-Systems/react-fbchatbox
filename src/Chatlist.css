@@ -70,3 +70,20 @@ span {
 {
   width: 240px;
 }
+
+#pay-title
+{
+  text-align: center;
+  font-size: 18px;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#pay-sub
+{
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  color: #cccccc;
+}
