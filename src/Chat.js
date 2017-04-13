@@ -24,6 +24,7 @@ var colorofchat = {
   color: "black"
 };
 
+
 class Card extends Component {
   search(event)
   {
