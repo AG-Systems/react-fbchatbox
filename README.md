@@ -1,6 +1,6 @@
 Demo
 
-![](http://i.imgur.com/SFXzvK2.gif)
+![](http://i.imgur.com/mkcaTG4.gif)
 
 
 Giphy api:
@@ -12,9 +12,15 @@ Todo:
 
 Show the sending of the gif
 
-
 Add invidiual chat logs (in future, do a ajax call and pull it from a server)
 
+Add emoji card
+
+Finish the payment card
+
+Add sticker card
+
+Send "messages"
 
 Fix some minor bugs
 
