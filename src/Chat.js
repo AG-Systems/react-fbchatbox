@@ -173,9 +173,13 @@ class Chat extends Component {
           }
     }
     $("#tab"+id).css("backgroundColor",activecolor);
-    $("#tab"+id).css("color","white");  
+    $("#tab"+id).css("color","white"); 
     chatcolor = activecolor;
     this.forceUpdate();
+  };
+  hide()
+  {
+      $("#card").hide();
   };
   render() {
     var hiddenstyle={
@@ -196,7 +200,7 @@ class Chat extends Component {
               <span className="glyphicon glyphicon-plus"></span> 
             </p> 
             </div>
-              <div id="chatlogs">
+              <div id="chatlogs" onClick={this.hide}>
                 <Chatlogs convo={this.props.name}/>
               </div>
             <Card />

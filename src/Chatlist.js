@@ -38,6 +38,7 @@ class Chatlist extends Component {
       $("#tab"+id).css("color","white");
       $("#"+id).show();
       $(".chat "+id).show();
+      $("#card").hide();
       // $(".mychat").css("backgroundColor",activecolor);
       this.forceUpdate();
     }
@@ -46,6 +47,7 @@ class Chatlist extends Component {
       activecolor = "#f2f2f2";
       $(".chat-navbar").css("backgroundColor",activecolor);
       $(".chat-navbar").css("color","black");
+      $("#card").hide();
     }
     render() {
     var style1 = {
@@ -57,10 +59,14 @@ class Chatlist extends Component {
       float: "left"
     };
     var style3 = {
-      marginLeft: "300px",
+      // marginLeft: "300px",
       width: "100%"
     };
-    
+    var style4 = {
+      width: "276px",
+      float: "left",
+      paddingLeft: "110px"
+    };
     return (
       <div style={style1}>
           <div className="chatlist" style={style2}>
@@ -91,10 +97,10 @@ class Chatlist extends Component {
             </div>
           </div>
           <div style={style3} hidden={chatnames.length === 0}>
-              <div hidden={chatnames.length < 1}>
+              <div hidden={chatnames.length < 1} id="chat-tab" style={style2}>
                   <Chat name={chatnames[0]} active={chatactive[0]} color={chatcolors[0]} id={chatid[0]} />
               </div>
-              <div hidden={chatnames.length < 2}>
+              <div hidden={chatnames.length < 2} id="chat-tab" style={style2}>
                     <Chat name={chatnames[1]} active={chatactive[1]} color={chatcolors[1]} id={chatid[1]} />
               </div>
           </div>

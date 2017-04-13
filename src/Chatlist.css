@@ -57,3 +57,10 @@ span {
 {
   float: right;
 }
+
+#chat-tab
+{
+  width: 276px;
+  padding-left: 30px;
+  padding-right: 276px;
+}
