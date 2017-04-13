@@ -8,6 +8,19 @@ Giphy api:
 ![](http://i.imgur.com/z1DNaXy.gif)
 
 
+### Contributing
+
+1) `git clone https://github.com/AG-Systems/react-fbchatbox.git`
+
+2) `cd react-fbchatbox`
+
+3) `npm install`
+
+4) `npm install jquery`
+
+5) `npm start`
+
+
 Todo:
 
 Show the sending of the gif
