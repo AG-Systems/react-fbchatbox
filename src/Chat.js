@@ -176,11 +176,11 @@ class Chat extends Component {
   };
   sendphoto()
   {
-     $("input[type='file']").click();
+     $("#photo-upload").click();
   };
   sendfile()
   {
-    
+     $("#file-upload").click();    
   };
   camera()
   {
@@ -245,12 +245,11 @@ class Chat extends Component {
               <input placeholder="Type a message..." />
               <span className="glyphicon glyphicon-thumbs-up" id="bottom"></span>
               <span className="glyphicon glyphicon-camera" id="bottom" onClick={this.camera}></span> 
-              <span className="glyphicon glyphicon-paperclip" id="bottom"></span> 
-              <span className="glyphicon glyphicon-folder-open" id="bottom" type='file' onClick={this.sendphoto}></span> 
+              <span className="glyphicon glyphicon-paperclip" id="bottom" onClick={this.sendfile}></span> 
+              <span className="glyphicon glyphicon-folder-open" id="bottom" onClick={this.sendphoto}></span>
               <span className="glyphicon glyphicon-usd" id="bottom" onClick={this.money}></span> 
               <span className="glyphicon glyphicon-expand" id="bottom" onClick={this.gif}></span> 
             </div>
-            <input type='file' style={hiddenstyle}  />
           </div>
         );
   }
