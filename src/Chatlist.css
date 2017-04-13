@@ -18,6 +18,7 @@ ul {
   margin-left: -33px;
   margin-top: -10px;
   height: 225px;
+  width: 310px;
 }
 li
 {
@@ -63,4 +64,9 @@ span {
   width: 276px;
   padding-left: 30px;
   padding-right: 276px;
+}
+
+#chatitem
+{
+  width: 240px;
 }

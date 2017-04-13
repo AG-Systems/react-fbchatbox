@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './Chat.css';
 import chatlogs from './chatlogs.json';
-import Chatlist from './Chatlist';
 import $ from "jquery";
 
 
@@ -102,13 +101,16 @@ class Chatlogs extends Component {
         backgroundColor: "#e0e0e0",
         border: "2px solid #e0e0e0"
     };
-    
+    var chatlogstyle = {
+        overflowY: "scroll",
+        overflowX: "hidden"
+    };
     return (
       <div>
         <br />
-          <ul>
+          <ul style={chatlogstyle}>
           {chatlogs.map( message =>
-                      <li key={message.id} ><img height="32px" width="32px"src={message.picture} hidden={message.name === "Me"}/>
+                      <li key={message.id} id="chatitem"><img height="32px" width="32px"src={message.picture} hidden={message.name === "Me"}/>
                       <span className="speech" style={mychat} hidden={message.name === "Me"}> {message.message} </span>
                       <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={message.name !== "Me"}> &nbsp; {message.message} </span>
                       </li>
@@ -212,7 +214,7 @@ class Chat extends Component {
               <span className="glyphicon glyphicon-folder-open" id="bottom" type='file' onClick={this.sendphoto}></span> 
               <span className="glyphicon glyphicon-expand" id="bottom" onClick={this.gif}></span> 
             </div>
-            <input type='file'  style={hiddenstyle} />
+            <input type='file' style={hiddenstyle}  />
           </div>
         );
   }
