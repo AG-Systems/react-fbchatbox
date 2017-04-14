@@ -218,6 +218,10 @@ class Chat extends Component {
     $("#pay").toggle();
 
   };
+  settings()
+  {
+    
+  };
   render() {
     var hiddenstyle={
          display: "none"
@@ -231,7 +235,7 @@ class Chat extends Component {
             /></span> 
               {this.props.name}
               <span className="glyphicon glyphicon-remove" id="close" onClick={() => this.close(this.props.id)}></span>
-              <span className="glyphicon glyphicon-cog"></span> 
+              <span className="glyphicon glyphicon-cog" onClick={this.settings}></span> 
               <span className="glyphicon glyphicon-earphone"></span> 
               <span className="glyphicon glyphicon-facetime-video"></span> 
               <span className="glyphicon glyphicon-plus"></span> 

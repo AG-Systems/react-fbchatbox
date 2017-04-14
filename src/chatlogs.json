@@ -1,7 +1,7 @@
  [
             {
               "name": "Mark Zuckerberg",
-              "picture": "https://scontent.fsnc1-4.fna.fbcdn.net/v/t34.0-1/p160x160/16176889_112685309244626_578204711_n.jpg?oh=30fa89c50e319953c56633bb7a264d91&oe=58EFE763",
+              "picture": "./markprofilepic.jpg",
               "active": "yes",
               "color": "orange",
               "message": "Hey bro",
@@ -9,7 +9,7 @@
             },
             {
               "name": "Me",
-              "picture": "https://scontent.fsnc1-4.fna.fbcdn.net/v/t1.0-1/p32x32/15442190_10154850861878599_2025475831340024218_n.jpg?oh=37f7f2bdbc6440dfca27e7651602a314&oe=5990ED67",
+              "picture": "./billprofilepic.jpg",
               "active": "5",
               "color": "orange",
               "message": "Nothing much",
