@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './Chat.css';
 import chatlogs from './chatlogs.json';
 import $ from "jquery";
-
+import App from './Chatlist'
 
 var chatcolor = "#498fff";
 
@@ -29,8 +29,8 @@ class Settings extends Component
 {
   file()
   {
-     $("#settings").hide();
-     $("#file-upload").click();      
+     $(".settings").hide();
+     $("#file-upload").click();    
   };
   render()
   {
@@ -45,7 +45,7 @@ class Settings extends Component
     };
   
     return(
-        <div id="settings" style={stylesettings} hidden={true}>
+        <div className={"settings gear"+ this.props.id} style={stylesettings} hidden={true}>
               <div id="settings-buttons">Open in Messenger</div>
               <div id="settings-buttons" onClick={this.file}>Add file...</div>
               <div id="settings-buttons">Add Friends to Chat...</div>
@@ -100,8 +100,8 @@ class Card extends Component {
   sendgif()
   {
       
-      $("#card").hide();
-      $("#settings").hide();
+      $(".card").hide();
+      $(".settings").hide();
   };
   render(){
       var cardstyle={
@@ -117,7 +117,7 @@ class Card extends Component {
         overflowX: "hidden"
       };
     return(
-      <div style={cardstyle} hidden={true} id="card">
+      <div style={cardstyle} hidden={true} className={"card gif"+this.props.id}>
             <input placeholder="Search GIFs across apps..." onChange={this.search} onClick={this.search}/>
             <img src={imageurl[0]} width="278px" onClick={this.sendgif}/>
             <img src={imageurl[1]} width="278px" onClick={this.sendgif}/>
@@ -145,7 +145,7 @@ class Payment extends Component
         overflowX: "hidden",
       };
     return(
-      <div style={cardstyle} hidden={true} id="pay">
+      <div style={cardstyle} hidden={true} className={"pay cash"+ this.props.id}>
           <div id="pay-title">Send Money to Anyone</div>
               <div id="pay-sub">Split dinner, pay rent or anything else</div>
              <hr />
@@ -191,11 +191,11 @@ class Chat extends Component {
   {
     name = "";
     $("#"+mainid).hide();
-    $("#card").hide();
-    $("#pay").hide();
-    $("#settings").hide();
+    $(".card").hide();
+    $(".pay").hide();
+    $(".settings").hide();
   };
-  gif()
+  gif(id)
   {
       $.ajax({
             url: "//api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC",
@@ -211,18 +211,19 @@ class Chat extends Component {
                 imageurl[4] = response.data[4].images.fixed_height.url;
             }
         });
-      $("#pay").hide();
-      $("#settings").hide();
-      $("#card").toggle();
+      $(".pay").hide();
+      $(".settings").hide();
+      $(".card").hide();
+      $(".gif" + id).toggle();
   };
   sendphoto()
   {
-     $("#settings").hide();     
+     $(".settings").hide();     
      $("#photo-upload").click();
   };
   sendfile()
   {
-     $("#settings").hide();     
+     $(".settings").hide();     
      $("#file-upload").click();  
   };
   camera()
@@ -250,21 +251,23 @@ class Chat extends Component {
   };
   hide()
   {
-      $("#card").hide();
-      $("#pay").hide();
-      $("#settings").hide();    
+      $(".card").hide();
+      $(".pay").hide();
+      $(".settings").hide();    
   };
-  money()
+  money(id)
   {
-    $("#card").hide();
-    $("#pay").toggle();
-    $("#settings").hide();
+    $(".pay").hide();
+    $(".card").hide();
+    $(".cash"+id).toggle();
+    $(".settings").hide();
   };
-  settings()
+  settings(id)
   {
-    $("#card").hide();
-    $("#pay").hide();    
-    $("#settings").toggle();
+    $(".settings").hide();
+    $(".card").hide();
+    $(".pay").hide();    
+    $(".gear"+id).toggle();
   };
   render() {
     var hiddenstyle={
@@ -279,26 +282,26 @@ class Chat extends Component {
             /></span> 
               {this.props.name}
               <span className="glyphicon glyphicon-remove" id="close" onClick={() => this.close(this.props.id)}></span>
-              <span className="glyphicon glyphicon-cog" onClick={this.settings}></span> 
+              <span className="glyphicon glyphicon-cog" onClick={() => this.settings(this.props.id)}></span> 
               <span className="glyphicon glyphicon-earphone"></span> 
               <span className="glyphicon glyphicon-facetime-video"></span> 
               <span className="glyphicon glyphicon-plus"></span> 
             </p> 
             </div>
-              <Settings chatname={this.props.name} />
+              <Settings chatname={this.props.name} id={this.props.id}/>
               <div id="chatlogs" onClick={this.hide}>
                 <Chatlogs convo={this.props.name}/>
               </div>
-            <Card />
-            <Payment />
+            <Card id={this.props.id}/>
+            <Payment id={this.props.id}/>
             <div id="input-fields">
               <input placeholder="Type a message..." />
               <span className="glyphicon glyphicon-thumbs-up" id="bottom"></span>
               <span className="glyphicon glyphicon-camera" id="bottom" onClick={this.camera}></span> 
               <span className="glyphicon glyphicon-paperclip" id="bottom" onClick={this.sendfile}></span> 
               <span className="glyphicon glyphicon-folder-open" id="bottom" onClick={this.sendphoto}></span>
-              <span className="glyphicon glyphicon-usd" id="bottom" onClick={this.money}></span> 
-              <span className="glyphicon glyphicon-expand" id="bottom" onClick={this.gif}></span> 
+              <span className="glyphicon glyphicon-usd" id="bottom" onClick={() => this.money(this.props.id)}></span> 
+              <span className="glyphicon glyphicon-expand" id="bottom" onClick={() => this.gif(this.props.id)}></span> 
             </div>
           </div>
         );

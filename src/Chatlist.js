@@ -38,9 +38,9 @@ class Chatlist extends Component {
       $("#tab"+id).css("color","white");
       $("#"+id).show();
       $(".chat "+id).show();
-      $("#card").hide();
-      $("#pay").hide();
-      $("#settings").hide();
+      $(".card").hide();
+      $(".pay").hide();
+      $(".settings").hide();
       // $(".mychat").css("backgroundColor",activecolor);
       this.forceUpdate();
     }
@@ -49,9 +49,9 @@ class Chatlist extends Component {
       activecolor = "#f2f2f2";
       $(".chat-navbar").css("backgroundColor",activecolor);
       $(".chat-navbar").css("color","black");
-      $("#card").hide();
-      $("#pay").hide();
-      $("#settings").hide();
+      $(".card").hide();
+      $(".pay").hide();
+      $(".settings").hide();
     }
     render() {
     var style1 = {
