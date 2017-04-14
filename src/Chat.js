@@ -167,14 +167,16 @@ class Chatlogs extends Component {
     };
     var chatlogstyle = {
         overflowY: "scroll",
-        overflowX: "hidden"
+        overflowX: "hidden",
+        width: "309px"
     };
     return (
       <div>
-        <br />
+        <div id="break"></div>
           <ul style={chatlogstyle}>
+            <div id="break"></div>
           {chatlogs.map( message =>
-                      <li key={message.id} id="chatitem"><img height="32px" width="32px"src={message.picture} hidden={message.name === "Me"}/>
+                      <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me"}/>
                       <span className="speech" style={mychat} hidden={message.name === "Me"}> {message.message} </span>
                       <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={message.name !== "Me"}> &nbsp; {message.message} </span>
                       </li>
