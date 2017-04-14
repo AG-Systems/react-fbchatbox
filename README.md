@@ -40,3 +40,5 @@ Fix some minor bugs
 Fix some of the formatting
 
 Add search function in the chat 
+
+Mobile optimization
