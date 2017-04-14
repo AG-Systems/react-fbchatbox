@@ -168,20 +168,21 @@ class Chatlogs extends Component {
     var chatlogstyle = {
         overflowY: "scroll",
         overflowX: "hidden",
-        width: "309px"
+        width: "309px",
+        height: "250px"
     };
     return (
       <div>
         <div id="break"></div>
           <ul style={chatlogstyle}>
             <div id="break"></div>
-          {chatlogs.map( message =>
-                      <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me"}/>
-                      <span className="speech" style={mychat} hidden={message.name === "Me"}> {message.message} </span>
-                      <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={message.name !== "Me"}> &nbsp; {message.message} </span>
-                      </li>
-                      
-          )}
+            {chatlogs.map( message =>
+                        <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me"}/>
+                        <span className="speech" style={mychat} hidden={message.name === "Me"}> {message.message} </span>
+                        <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={message.name !== "Me"}> &nbsp; {message.message} </span>
+                        </li>
+                        
+            )}
           </ul>
       </div>
     );
@@ -297,7 +298,7 @@ class Chat extends Component {
             <Card id={this.props.id}/>
             <Payment id={this.props.id}/>
             <div id="input-fields">
-              <input placeholder="Type a message..." />
+              <input placeholder="Type a message..." onClick={this.hide}/>
               <span className="glyphicon glyphicon-thumbs-up" id="bottom"></span>
               <span className="glyphicon glyphicon-camera" id="bottom" onClick={this.camera}></span> 
               <span className="glyphicon glyphicon-paperclip" id="bottom" onClick={this.sendfile}></span> 
