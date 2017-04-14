@@ -76,3 +76,23 @@ span.speech {
 {
     margin-top: -5px;
 }
+
+#settings-buttons
+{
+  background-color: white;
+  color: black;  
+  padding-left: 26px;
+  padding-right: 10px;
+  font-size: 13px;
+}
+#settings-buttons:hover 
+{
+  background-color: #4080ff;
+  color: white;
+}
+
+#settings-break
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

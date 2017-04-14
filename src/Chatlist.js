@@ -40,6 +40,7 @@ class Chatlist extends Component {
       $(".chat "+id).show();
       $("#card").hide();
       $("#pay").hide();
+      $("#settings").hide();
       // $(".mychat").css("backgroundColor",activecolor);
       this.forceUpdate();
     }
@@ -50,6 +51,7 @@ class Chatlist extends Component {
       $(".chat-navbar").css("color","black");
       $("#card").hide();
       $("#pay").hide();
+      $("#settings").hide();
     }
     render() {
     var style1 = {

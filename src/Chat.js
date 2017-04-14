@@ -25,6 +25,43 @@ var colorofchat = {
 };
 
 
+class Settings extends Component
+{
+  file()
+  {
+     $("#settings").hide();
+     $("#file-upload").click();      
+  };
+  render()
+  {
+  var stylesettings = {
+      width: "173px",
+      height: "230px",
+      position: "absolute",
+      zIndex: 100,
+      backgroundColor: "white",
+      marginLeft: "220px",
+      border: "1px solid black"
+    };
+  
+    return(
+        <div id="settings" style={stylesettings} hidden={true}>
+              <div id="settings-buttons">Open in Messenger</div>
+              <div id="settings-buttons" onClick={this.file}>Add file...</div>
+              <div id="settings-buttons">Add Friends to Chat...</div>
+              <div id="settings-buttons">Turn off chat for {this.props.chatname}</div>
+              <hr id="settings-break" />
+              <div id="settings-buttons">Change Color...</div>
+              <div id="settings-buttons">Mute Conversation...</div>
+              <div id="settings-buttons">Delete Conversation...</div>
+              <hr id="settings-break" />
+              <div id="settings-buttons">Block Messages...</div>
+              <div id="settings-buttons">Report...</div>
+        </div>
+      );
+  }
+}
+
 class Card extends Component {
   search(event)
   {
@@ -64,6 +101,7 @@ class Card extends Component {
   {
       
       $("#card").hide();
+      $("#settings").hide();
   };
   render(){
       var cardstyle={
@@ -155,6 +193,7 @@ class Chat extends Component {
     $("#"+mainid).hide();
     $("#card").hide();
     $("#pay").hide();
+    $("#settings").hide();
   };
   gif()
   {
@@ -172,16 +211,19 @@ class Chat extends Component {
                 imageurl[4] = response.data[4].images.fixed_height.url;
             }
         });
-      $("#pay").hide();      
+      $("#pay").hide();
+      $("#settings").hide();
       $("#card").toggle();
   };
   sendphoto()
   {
+     $("#settings").hide();     
      $("#photo-upload").click();
   };
   sendfile()
   {
-     $("#file-upload").click();    
+     $("#settings").hide();     
+     $("#file-upload").click();  
   };
   camera()
   {
@@ -210,17 +252,19 @@ class Chat extends Component {
   {
       $("#card").hide();
       $("#pay").hide();
-    
+      $("#settings").hide();    
   };
   money()
   {
     $("#card").hide();
     $("#pay").toggle();
-
+    $("#settings").hide();
   };
   settings()
   {
-    
+    $("#card").hide();
+    $("#pay").hide();    
+    $("#settings").toggle();
   };
   render() {
     var hiddenstyle={
@@ -241,6 +285,7 @@ class Chat extends Component {
               <span className="glyphicon glyphicon-plus"></span> 
             </p> 
             </div>
+              <Settings chatname={this.props.name} />
               <div id="chatlogs" onClick={this.hide}>
                 <Chatlogs convo={this.props.name}/>
               </div>
