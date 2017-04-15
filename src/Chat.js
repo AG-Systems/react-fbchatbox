@@ -41,6 +41,33 @@ function updateScroll(){
     element.scrollTop = element.scrollHeight;
 }
 
+function sendmessage(id,str="",img="")
+{
+  if(str !== "")
+  {
+        if((str).length < 32)
+        {
+          $(".messages1").append(
+            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ str +'</span></li>'
+            );
+        }
+        else
+        {
+          var tempstr = str;
+          tempstr = linebreaker(tempstr, 27).join('&#13;&#10; &nbsp;');
+          $(".messages1").append(
+            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ tempstr +'</span></li>'
+            );        
+        }    
+  }
+  else
+  {
+    $(".messages1").append(
+    '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img style="float:right;" height="82px" width="152px" src='+ img +'/></li>'
+    );    
+  }
+}
+
 class Settings extends Component
 {
   file()
@@ -113,9 +140,10 @@ class Card extends Component {
         });    
     }
   };
-  sendgif()
+  sendgif(id, url)
   {
-      
+      console.log(url);
+      sendmessage(id,"",url)
       $(".card").hide();
       $(".settings").hide();
   };
@@ -135,7 +163,7 @@ class Card extends Component {
     return(
       <div style={cardstyle} hidden={true} className={"card gif"+this.props.id}>
             <input placeholder="Search GIFs across apps..." onChange={this.search} onClick={this.search}/>
-            <img src={imageurl[0]} width="278px" onClick={this.sendgif}/>
+            <img src={imageurl[0]} width="278px" onClick={() => this.sendgif(this.props.id,imageurl[0])}/>
             <img src={imageurl[1]} width="278px" onClick={this.sendgif}/>
             <img src={imageurl[2]} width="278px" onClick={this.sendgif}/>
             <img src={imageurl[3]} width="278px" onClick={this.sendgif}/>
@@ -288,24 +316,11 @@ class Chat extends Component {
     $(".pay").hide();    
     $(".gear"+id).toggle();
   };
-  sendmessage = (e) => {
+  sendchat = (e) => {
     if (e.key === 'Enter') {
       var input = document.getElementById("messagechatinput");
       if((input.value).length > 0){
-        if((input.value).length < 32)
-        {
-          $(".messages1").append(
-            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ input.value +'</span></li>'
-            );
-        }
-        else
-        {
-          var tempstr = input.value;
-          tempstr = linebreaker(tempstr, 27).join('&#13;&#10; &nbsp;');
-          $(".messages1").append(
-            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ tempstr +'</span></li>'
-            );        
-        }
+        sendmessage(1,input.value);
         input.value = '';
         updateScroll();
       }
@@ -338,7 +353,7 @@ class Chat extends Component {
             <Payment id={this.props.id}/>
             <div id="input-fields">
               <input placeholder="Type a message..." onClick={this.hide} className={"message box"+ this.props.id}
-              type="text" id="messagechatinput" onKeyPress={this.sendmessage}
+              type="text" id="messagechatinput" onKeyDown={this.sendchat}
               />
               <span className="glyphicon glyphicon-thumbs-up" id="bottom"></span>
               <span className="glyphicon glyphicon-camera" id="bottom" onClick={this.camera}></span> 
