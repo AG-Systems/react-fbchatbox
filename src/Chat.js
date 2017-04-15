@@ -24,6 +24,22 @@ var colorofchat = {
   color: "black"
 };
 
+function linebreaker(str, n) {
+    var ret = [];
+    var i;
+    var len;
+
+    for(i = 0, len = str.length; i < len; i += n) {
+       ret.push(str.substr(i, n))
+    }
+
+    return ret
+};
+
+function updateScroll(){
+    var element = document.getElementById("chatlogs");
+    element.scrollTop = element.scrollHeight;
+}
 
 class Settings extends Component
 {
@@ -174,7 +190,7 @@ class Chatlogs extends Component {
     return (
       <div>
         <div id="break"></div>
-          <ul style={chatlogstyle}>
+          <ul style={chatlogstyle} className={"listof messages"+this.props.id}>
             <div id="break"></div>
             {chatlogs.map( message =>
                         <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me"}/>
@@ -272,6 +288,29 @@ class Chat extends Component {
     $(".pay").hide();    
     $(".gear"+id).toggle();
   };
+  sendmessage = (e) => {
+    if (e.key === 'Enter') {
+      var input = document.getElementById("messagechatinput");
+      if((input.value).length > 0){
+        if((input.value).length < 32)
+        {
+          $(".messages1").append(
+            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ input.value +'</span></li>'
+            );
+        }
+        else
+        {
+          var tempstr = input.value;
+          tempstr = linebreaker(tempstr, 27).join('&#13;&#10; &nbsp;');
+          $(".messages1").append(
+            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ tempstr +'</span></li>'
+            );        
+        }
+        input.value = '';
+        updateScroll();
+      }
+    }
+  }
   render() {
     var hiddenstyle={
          display: "none"
@@ -291,14 +330,16 @@ class Chat extends Component {
               <span className="glyphicon glyphicon-plus"></span> 
             </p> 
             </div>
-              <Settings chatname={this.props.name} id={this.props.id}/>
-              <div id="chatlogs" onClick={this.hide}>
-                <Chatlogs convo={this.props.name}/>
+              <Settings chatname={this.props.name} id={this.props.id} />
+              <div id="chatlogs" className={"chat box"+this.props.id} onClick={this.hide}>
+                <Chatlogs convo={this.props.name} id={this.props.id} />
               </div>
             <Card id={this.props.id}/>
             <Payment id={this.props.id}/>
             <div id="input-fields">
-              <input placeholder="Type a message..." onClick={this.hide}/>
+              <input placeholder="Type a message..." onClick={this.hide} className={"message box"+ this.props.id}
+              type="text" id="messagechatinput" onKeyPress={this.sendmessage}
+              />
               <span className="glyphicon glyphicon-thumbs-up" id="bottom"></span>
               <span className="glyphicon glyphicon-camera" id="bottom" onClick={this.camera}></span> 
               <span className="glyphicon glyphicon-paperclip" id="bottom" onClick={this.sendfile}></span> 
