@@ -27,20 +27,16 @@ Sending individual messages:
 
 Todo:
 
-Add invidiual chat logs (in future, do a ajax call and pull it from a server)
-
 Add emoji card
 
 Finish the payment card
 
 Add sticker card
 
-Send "messages"
-
 Fix some minor bugs
-
-Fix some of the formatting
 
 Add search function in the chat 
 
 Mobile optimization
+
+Fully remove jquery
