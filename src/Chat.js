@@ -11,7 +11,7 @@ var imagecounter = 0;
 var photoid = 1;
 var typingchatid = 1;
 var imageurl = ["", "", "", "","", ""];
-var message_index = ["chatlogs", "./markzuckerberg-chatlogs.json", "./billgates-chatlogs.json"];
+var colorchat= "";
 $.ajax({
             url: "//api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC",
             type: "GET",
@@ -66,7 +66,7 @@ function sendmessage(id,str="",img="")
         if((str).length < 32)
         {
           $(".messages"+id).append(
-            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ str +'</span></li>'
+            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color:'+colorchat+ '" class="speech mychat">&nbsp;'+ str +'</span></li>'
             );
         }
         else
@@ -74,7 +74,7 @@ function sendmessage(id,str="",img="")
           var tempstr = str;
           tempstr = linebreaker(tempstr, 27).join('&#13;&#10; &nbsp;');
           $(".messages"+id).append(
-            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ tempstr +'</span></li>'
+            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color:'+colorchat+ '" class="speech mychat">&nbsp;'+ tempstr +'</span></li>'
             );        
         }    
   }
@@ -375,8 +375,9 @@ class Chat extends Component {
       }
     }
   }
-  typing(id)
+  typing(id,color)
   {
+    colorchat = color;
     typingchatid = id;
     $(".card").hide();
     $(".pay").hide();
@@ -408,7 +409,7 @@ class Chat extends Component {
             <Card id={this.props.id}/>
             <Payment id={this.props.id}/>
             <div id="input-fields">
-              <input placeholder="Type a message..." onClick={() => this.typing(this.props.id)} className={"message box"+ this.props.id}
+              <input placeholder="Type a message..." onClick={() => this.typing(this.props.id, this.props.color)} className={"message box"+ this.props.id}
               type="text" id={"messagechatinput"+this.props.id} onKeyDown={this.sendchat}
               />
               <span className="glyphicon glyphicon-thumbs-up" id="bottom"></span>

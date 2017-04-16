@@ -3,7 +3,7 @@
               "name": "Mark Zuckerberg",
               "picture": "./markprofilepic.jpg",
               "active": "yes",
-              "color": "orange",
+              "color": "red",
               "chatlogs": {
                     "othermessage": "Hey bro",
                     "mymessage-Mark Zuckerberg": "Nothing much"
@@ -15,7 +15,7 @@
               "name": "Bill Gates",
               "picture": "./billprofilepic.jpg",
               "active": "5",
-              "color": "orange",
+              "color": "#4080ff",
               "chatlogs": {
                     "othermessage": "Cool"
               },
