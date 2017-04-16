@@ -12,6 +12,7 @@ var photoid = 1;
 var typingchatid = 1;
 var imageurl = ["", "", "", "","", ""];
 var colorchat= "";
+JSON.stringify(chatlogs);
 $.ajax({
             url: "//api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC",
             type: "GET",
@@ -265,15 +266,14 @@ class Chatlogs extends Component {
     var messages = "";
     var chat_id = 0;
     try {
-        JSON.stringify(chatlogs);
         var message_name = chatlogs[this.props.id-1].name;
         var profile_pic = chatlogs[this.props.id-1].picture;
-        chat_id = this.props.id
+        chat_id = this.props.id;
+        console.log(message_name.chatlogs.mymessage);
     }
     catch(err) {
         var messages = chatlogs;
     }
-    //console.log(message_name);
     return (
       <div>
         <div id="break"></div>
@@ -281,8 +281,10 @@ class Chatlogs extends Component {
             <div id="break"></div>
             {chatlogs.map( message =>
                 <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me" || this.props.convo !== message.name}/>
-                    <span className="speech" style={mychat} hidden={message.name === "Me" || this.props.id !== message.id}> {message.chatlogs.othermessage} </span>
-                    <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={message.chatlogs !== "mymessage"}> &nbsp; {message.chatlogs.mymessage+"-"+this.props.convo} </span>
+                    <span className="speech otherchat" style={mychat} hidden={message.name === "Me" || this.props.id !== message.id}> {message.chatlogs.othermessage} </span>
+                    <br/>
+                    <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={this.props.id !== message.chatlogs.mymessage_id}>
+                    &nbsp; {message.chatlogs.mymessage} </span>
                 </li>
                         
             )}

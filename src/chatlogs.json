@@ -3,10 +3,11 @@
               "name": "Mark Zuckerberg",
               "picture": "./markprofilepic.jpg",
               "active": "yes",
-              "color": "red",
+              "color": "orange",
               "chatlogs": {
                     "othermessage": "Hey bro",
-                    "mymessage": "Nothing much"
+                    "mymessage":  "Nothing Much",
+                    "mymessage_id": 1
               },
               "id": 1,
               "unique_id": 3
@@ -17,7 +18,7 @@
               "active": "5",
               "color": "#4080ff",
               "chatlogs": {
-                    "othermessage": "Cool"
+                    "othermessage": "Made with React.js ♥"
               },
               "id": 2,
               "unique_id": 21
