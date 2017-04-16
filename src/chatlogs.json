@@ -5,7 +5,8 @@
               "active": "yes",
               "color": "orange",
               "message": "Hey bro",
-              "id": 1
+              "id": 1,
+              "unique_id": 1
             },
             {
               "name": "Me",
@@ -13,6 +14,26 @@
               "active": "5",
               "color": "orange",
               "message": "Nothing much",
-              "id": 2
-            }
+              "id": 2,
+              "unique_id": 1
+            },
+            
+            {
+              "name": "Bill Gates",
+              "picture": "./markprofilepic.jpg",
+              "active": "yes",
+              "color": "orange",
+              "message": "Wanna get coffee sometime?",
+              "id": 3,
+              "unique_id": 2
+            },
+            {
+              "name": "Me",
+              "picture": "./billprofilepic.jpg",
+              "active": "5",
+              "color": "orange",
+              "message": "I would love to!",
+              "id": 4,
+              "unique_id": 2
+            }            
 ]

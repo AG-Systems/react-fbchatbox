@@ -84,6 +84,7 @@ function sendmessage(id,str="",img="")
     );
      $('#gif-upload'+gifcounter).attr('src', img);
      gifcounter += 1;
+    updateScroll();
   }
 }
 
@@ -286,7 +287,6 @@ class Chat extends Component {
   {
      $(".settings").hide();
      photoid = id;
-     console.log(id);
      $("#photo-upload").click();
   };
   sendfile()
@@ -326,8 +326,7 @@ class Chat extends Component {
   money(id)
   {
     $(".pay").hide();
-    $(".card").hide();
-    console.log("aaa");
+    $(".card").hide(); 
     $(".settings").hide();
     $(".cash"+id).toggle();
   };
@@ -356,7 +355,6 @@ class Chat extends Component {
     $(".card").hide();
     $(".pay").hide();
     $(".settings").hide();   
-    console.log(id);
   };
   render() {
     var hiddenstyle={
