@@ -11,6 +11,7 @@ var imagecounter = 0;
 var photoid = 1;
 var typingchatid = 1;
 var imageurl = ["", "", "", "","", ""];
+var message_index = ["chatlogs", "./markzuckerberg-chatlogs.json", "./billgates-chatlogs.json"];
 $.ajax({
             url: "//api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC",
             type: "GET",
@@ -80,7 +81,7 @@ function sendmessage(id,str="",img="")
   else
   {
     $(".messages"+id).append(
-    '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img id="gif-upload'+gifcounter+'" style="float:right;" height="115px" width="152px" src=""/></li>'
+    '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img id="gif-upload'+ gifcounter +'" style="float:right;" height="115px" width="152px" src=""/></li>'
     );
      $('#gif-upload'+gifcounter).attr('src', img);
      gifcounter += 1;
@@ -248,16 +249,28 @@ class Chatlogs extends Component {
         width: "309px",
         height: "250px"
     };
+    var messages = "";
+    var chat_id = 0;
+    try {
+        JSON.stringify(chatlogs);
+        var message_name = chatlogs[this.props.id-1].name;
+        var profile_pic = chatlogs[this.props.id-1].picture;
+        chat_id = this.props.id
+    }
+    catch(err) {
+        var messages = chatlogs;
+    }
+    //console.log(message_name);
     return (
       <div>
         <div id="break"></div>
           <ul style={chatlogstyle} className={"listof messages"+this.props.id}>
             <div id="break"></div>
             {chatlogs.map( message =>
-                        <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me"}/>
-                        <span className="speech" style={mychat} hidden={message.name === "Me"}> {message.message} </span>
-                        <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={message.name !== "Me"}> &nbsp; {message.message} </span>
-                        </li>
+                <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me" || this.props.convo !== message.name}/>
+                    <span className="speech" style={mychat} hidden={message.name === "Me" || this.props.id !== message.id}> {message.chatlogs.othermessage} </span>
+                    <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={message.chatlogs !== "mymessage"}> &nbsp; {message.chatlogs.mymessage+"-"+this.props.convo} </span>
+                </li>
                         
             )}
           </ul>
