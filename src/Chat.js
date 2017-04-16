@@ -37,10 +37,8 @@ function linebreaker(str, n) {
 };
 
 function updateScroll(){
-    var element = document.getElementById("chatlogs");
-    element.scrollTop = element.scrollHeight;
+    $('.listof').scrollTop($('.messages1')[0].scrollHeight);
 }
-
 function sendmessage(id,str="",img="")
 {
   if(str !== "")
@@ -319,7 +317,9 @@ class Chat extends Component {
   sendchat = (e) => {
     if (e.key === 'Enter') {
       var input = document.getElementById("messagechatinput");
-      if((input.value).length > 0){
+      if((input.value).length > 0)
+      {
+        
         sendmessage(1,input.value);
         input.value = '';
         updateScroll();
