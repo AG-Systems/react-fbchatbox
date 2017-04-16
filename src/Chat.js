@@ -112,13 +112,21 @@ class Settings extends Component
       marginLeft: "220px",
       border: "1px solid black"
     };
-  
+    var first_name = [""];
+    try {
+        var first_name = this.props.chatname.split(" ");        
+    }
+    catch(err) {
+        
+    }
+    
     return(
         <div className={"settings gear"+ this.props.id} style={stylesettings} hidden={true}>
+              <div id="break"></div>
               <div id="settings-buttons">Open in Messenger</div>
               <div id="settings-buttons" onClick={this.file}>Add file...</div>
               <div id="settings-buttons">Add Friends to Chat...</div>
-              <div id="settings-buttons">Turn off chat for {this.props.chatname}</div>
+              <div id="settings-buttons">Turn off chat for {first_name[0]}</div>
               <hr id="settings-break" />
               <div id="settings-buttons">Change Color...</div>
               <div id="settings-buttons">Mute Conversation...</div>
