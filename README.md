@@ -7,6 +7,10 @@ Giphy api:
 
 ![](http://i.imgur.com/0OtjY7x.gif)
 
+Sending individual messages:
+
+![](http://i.imgur.com/Mr1Tp1G.gif)
+
 
 ### Contributing
 
