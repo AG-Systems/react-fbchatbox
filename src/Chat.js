@@ -63,6 +63,10 @@ function sendmessage(id,str="",img="")
 {
   if(str !== "")
   {
+        if($(str).text().length > 0)
+        {
+          str = $(str).text();
+        }
         if((str).length < 32)
         {
           $(".messages"+id).append(
