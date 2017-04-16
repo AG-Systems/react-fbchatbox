@@ -50,6 +50,10 @@ $(":file").change(function () {
             reader.readAsDataURL(this.files[0]);
         }
 });
+function sanitizeString(str){
+    str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
+    return str.trim();
+}
 function imageIsLoaded(e) {
     $(".messages"+photoid).append(
       '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img id="image-upload'+ imagecounter+'" style="float:right;" height="115px" width="152px" src=""/></li>'
@@ -63,10 +67,7 @@ function sendmessage(id,str="",img="")
 {
   if(str !== "")
   {
-        if($(str).text().length > 0)
-        {
-          str = $(str).text();
-        }
+        str = sanitizeString(str);
         if((str).length < 32)
         {
           $(".messages"+id).append(
