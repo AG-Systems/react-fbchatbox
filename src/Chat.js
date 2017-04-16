@@ -195,6 +195,11 @@ class Card extends Component {
 
 class Payment extends Component
 {
+  
+  nextpage()
+  {
+      alert("Coming soon");
+  };
   render(){
     var cardstyle={
         height: "299px",
@@ -210,10 +215,18 @@ class Payment extends Component
       };
     return(
       <div style={cardstyle} hidden={true} className={"pay cash"+ this.props.id}>
-          <div id="pay-title">Send Money to Anyone</div>
-              <div id="pay-sub">Split dinner, pay rent or anything else</div>
-             <hr />
-             <button>Next</button>
+          <div id="first-page">
+              <div id="pay-title">Send Money to Anyone</div>
+                  <div id="pay-sub">Split dinner, pay rent or anything else</div>
+                  <hr />
+                   <div id="pay-desc">It's FREE to send and receive money.</div> 
+                   <div id="pay-desc">Industry-leading security — password protection, anti-fraud team and more.</div>    
+                   <div id="pay-desc">Send money from your debit card to theirs.</div>   
+                <div id="payment-button">
+                 <div id="break"></div>
+                 <button id="payment-next" onClick={this.nextpage}>Next</button>
+                </div>
+          </div>
       </div>
       );
   }

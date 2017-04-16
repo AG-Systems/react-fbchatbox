@@ -109,3 +109,24 @@ span.speech {
   width: 152px;
   border: 1px solid black;
 }
+
+#pay-desc
+{
+  padding-top: 10px;
+  padding-bottom: 6px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#payment-next
+{
+  background-color: #4267b2; 
+  border: none;
+  color: white;
+  float: right;
+}
+#payment-button
+{
+  padding-right: 20px;
+  padding-bottom: 5px;
+}

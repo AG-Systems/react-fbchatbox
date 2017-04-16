@@ -84,7 +84,7 @@ class Chatlist extends Component {
               <p> CONTACTS </p>
               <ul>
               {contacts.map( contact =>
-                    <span><li id="contact" key={contact.id} onClick={() => this.currentchat(contact.name, contact.id, contact.active, contact.color)}><img height="32px" width="32px"
+                    <span id="contactspan"><li id="contact" key={contact.id} onClick={() => this.currentchat(contact.name, contact.id, contact.active, contact.color)}><img height="32px" width="32px"
                     src={contact.picture} 
                     /> {contact.name } 
                     <span className="lastactive"><span hidden={contact.active !== "yes"}><img 

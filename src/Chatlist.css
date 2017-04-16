@@ -29,7 +29,7 @@ li
   padding: 5px;
 }
 
-span:hover { 
+#contactspan:hover { 
     background-color: #e5e5e5;
 }
 #contact:hover {
