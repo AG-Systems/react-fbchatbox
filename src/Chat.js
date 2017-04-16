@@ -8,6 +8,8 @@ import App from './Chatlist'
 var chatcolor = "#498fff";
 var gifcounter = 0;
 var imagecounter = 0;
+var photoid = 1;
+var typingchatid = 1;
 var imageurl = ["", "", "", "","", ""];
 $.ajax({
             url: "//api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC",
@@ -38,7 +40,7 @@ function linebreaker(str, n) {
 };
 
 function updateScroll(){
-    $('.listof').scrollTop($('.messages1')[0].scrollHeight);
+    $('.listof').scrollTop($('.listof')[0].scrollHeight);
 }
 $(":file").change(function () {
         if (this.files && this.files[0]) {
@@ -48,11 +50,12 @@ $(":file").change(function () {
         }
 });
 function imageIsLoaded(e) {
-    $(".messages1").append(
+    $(".messages"+photoid).append(
       '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img id="image-upload'+ imagecounter+'" style="float:right;" height="115px" width="152px" src=""/></li>'
     );   
     $('#image-upload'+imagecounter).attr('src', e.target.result);
     imagecounter += 1;
+    updateScroll();
 };
 
 function sendmessage(id,str="",img="")
@@ -61,7 +64,7 @@ function sendmessage(id,str="",img="")
   {
         if((str).length < 32)
         {
-          $(".messages1").append(
+          $(".messages"+id).append(
             '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ str +'</span></li>'
             );
         }
@@ -69,14 +72,14 @@ function sendmessage(id,str="",img="")
         {
           var tempstr = str;
           tempstr = linebreaker(tempstr, 27).join('&#13;&#10; &nbsp;');
-          $(".messages1").append(
+          $(".messages"+id).append(
             '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color: orange;" class="speech mychat">&nbsp;'+ tempstr +'</span></li>'
             );        
         }    
   }
   else
   {
-    $(".messages1").append(
+    $(".messages"+id).append(
     '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img id="gif-upload'+gifcounter+'" style="float:right;" height="115px" width="152px" src=""/></li>'
     );
      $('#gif-upload'+gifcounter).attr('src', img);
@@ -279,9 +282,11 @@ class Chat extends Component {
       $(".card").hide();
       $(".gif" + id).toggle();
   };
-  sendphoto()
+  sendphoto(id)
   {
-     $(".settings").hide();     
+     $(".settings").hide();
+     photoid = id;
+     console.log(id);
      $("#photo-upload").click();
   };
   sendfile()
@@ -322,8 +327,9 @@ class Chat extends Component {
   {
     $(".pay").hide();
     $(".card").hide();
-    $(".cash"+id).toggle();
+    console.log("aaa");
     $(".settings").hide();
+    $(".cash"+id).toggle();
   };
   settings(id)
   {
@@ -334,16 +340,24 @@ class Chat extends Component {
   };
   sendchat = (e) => {
     if (e.key === 'Enter') {
-      var input = document.getElementById("messagechatinput");
+      var input = document.getElementById("messagechatinput"+typingchatid);
       if((input.value).length > 0)
       {
         
-        sendmessage(1,input.value);
+        sendmessage(typingchatid,input.value);
         input.value = '';
         updateScroll();
       }
     }
   }
+  typing(id)
+  {
+    typingchatid = id;
+    $(".card").hide();
+    $(".pay").hide();
+    $(".settings").hide();   
+    console.log(id);
+  };
   render() {
     var hiddenstyle={
          display: "none"
@@ -370,13 +384,13 @@ class Chat extends Component {
             <Card id={this.props.id}/>
             <Payment id={this.props.id}/>
             <div id="input-fields">
-              <input placeholder="Type a message..." onClick={this.hide} className={"message box"+ this.props.id}
-              type="text" id="messagechatinput" onKeyDown={this.sendchat}
+              <input placeholder="Type a message..." onClick={() => this.typing(this.props.id)} className={"message box"+ this.props.id}
+              type="text" id={"messagechatinput"+this.props.id} onKeyDown={this.sendchat}
               />
               <span className="glyphicon glyphicon-thumbs-up" id="bottom"></span>
               <span className="glyphicon glyphicon-camera" id="bottom" onClick={this.camera}></span> 
               <span className="glyphicon glyphicon-paperclip" id="bottom" onClick={this.sendfile}></span> 
-              <span className="glyphicon glyphicon-folder-open" id="bottom" onClick={this.sendphoto}></span>
+              <span className="glyphicon glyphicon-folder-open" id="bottom" onClick={() => this.sendphoto(this.props.id)}></span>
               <span className="glyphicon glyphicon-usd" id="bottom" onClick={() => this.money(this.props.id)}></span> 
               <span className="glyphicon glyphicon-expand" id="bottom" onClick={() => this.gif(this.props.id)}></span> 
             </div>
