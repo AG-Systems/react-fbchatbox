@@ -282,8 +282,7 @@ class Chatlogs extends Component {
             {chatlogs.map( message =>
                 <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me" || this.props.convo !== message.name}/>
                     <span className="speech otherchat" style={mychat} hidden={message.name === "Me" || this.props.id !== message.id}> {message.chatlogs.othermessage} </span>
-                    <br/>
-                    <span className="speech mychat" style={{float: "right",backgroundColor: message.color}} hidden={this.props.id !== message.chatlogs.mymessage_id}>
+                    <span className="speech mychat" style={{float: "right",backgroundColor: message.color, marginTop: "20px"}} hidden={this.props.id !== message.chatlogs.mymessage_id}>
                     &nbsp; {message.chatlogs.mymessage} </span>
                 </li>
                         
