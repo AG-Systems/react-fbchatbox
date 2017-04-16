@@ -6,7 +6,8 @@ import $ from "jquery";
 import App from './Chatlist'
 
 var chatcolor = "#498fff";
-
+var gifcounter = 0;
+var imagecounter = 0;
 var imageurl = ["", "", "", "","", ""];
 $.ajax({
             url: "//api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC",
@@ -39,6 +40,21 @@ function linebreaker(str, n) {
 function updateScroll(){
     $('.listof').scrollTop($('.messages1')[0].scrollHeight);
 }
+$(":file").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded;
+            reader.readAsDataURL(this.files[0]);
+        }
+});
+function imageIsLoaded(e) {
+    $(".messages1").append(
+      '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img id="image-upload'+ imagecounter+'" style="float:right;" height="115px" width="152px" src=""/></li>'
+    );   
+    $('#image-upload'+imagecounter).attr('src', e.target.result);
+    imagecounter += 1;
+};
+
 function sendmessage(id,str="",img="")
 {
   if(str !== "")
@@ -61,8 +77,10 @@ function sendmessage(id,str="",img="")
   else
   {
     $(".messages1").append(
-    '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img style="float:right;" height="82px" width="152px" src='+ img +'/></li>'
-    );    
+    '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px; float:right; padding-right: 20px;"><img id="gif-upload'+gifcounter+'" style="float:right;" height="115px" width="152px" src=""/></li>'
+    );
+     $('#gif-upload'+gifcounter).attr('src', img);
+     gifcounter += 1;
   }
 }
 
@@ -162,10 +180,10 @@ class Card extends Component {
       <div style={cardstyle} hidden={true} className={"card gif"+this.props.id}>
             <input placeholder="Search GIFs across apps..." onChange={this.search} onClick={this.search}/>
             <img src={imageurl[0]} width="278px" onClick={() => this.sendgif(this.props.id,imageurl[0])}/>
-            <img src={imageurl[1]} width="278px" onClick={this.sendgif}/>
-            <img src={imageurl[2]} width="278px" onClick={this.sendgif}/>
-            <img src={imageurl[3]} width="278px" onClick={this.sendgif}/>
-            <img src={imageurl[4]} width="278px" onClick={this.sendgif}/>
+            <img src={imageurl[1]} width="278px" onClick={() => this.sendgif(this.props.id,imageurl[1])}/>
+            <img src={imageurl[2]} width="278px" onClick={() => this.sendgif(this.props.id,imageurl[2])}/>
+            <img src={imageurl[3]} width="278px" onClick={() => this.sendgif(this.props.id,imageurl[3])}/>
+            <img src={imageurl[4]} width="278px" onClick={() => this.sendgif(this.props.id,imageurl[4])}/>
       </div>
       );
   }
