@@ -5,7 +5,7 @@ Demo
 
 Giphy api:
 
-![](http://i.imgur.com/z1DNaXy.gif)
+![](http://i.imgur.com/0OtjY7x.gif)
 
 
 ### Contributing
