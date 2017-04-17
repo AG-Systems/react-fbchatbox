@@ -9,7 +9,7 @@ Giphy api:
 
 Sending individual messages:
 
-![](http://i.imgur.com/Mr1Tp1G.gif)
+![](http://i.imgur.com/lPGsfuy.gif)
 
 Search for contacts(still needs some work):
 
