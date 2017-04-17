@@ -14,6 +14,26 @@ var unactive = ""
 var activeid=0;
 
 class Chatlist extends Component {
+    constructor(props, context) {
+        super(props, context);
+    
+        this.state = {
+          searchcontacts: ''
+        };
+        this.searchinput = this.searchinput.bind(this);
+      };
+      
+    searchfilter(str,substr)
+    {
+      if(str.toLowerCase().indexOf(substr.toLowerCase()) !== -1)
+      {
+        return false;
+      }
+      else
+      {
+         return true;
+      }
+    }
     currentchat (name,id,active,color)
     {
       if(chatnames.indexOf(name) === -1)
@@ -41,7 +61,9 @@ class Chatlist extends Component {
       $(".card").hide();
       $(".pay").hide();
       $(".settings").hide();
+      document.getElementById("searchbar").value = '';
       // $(".mychat").css("backgroundColor",activecolor);
+      
       this.forceUpdate();
     }
     changecolor(active, id)
@@ -52,6 +74,11 @@ class Chatlist extends Component {
       $(".card").hide();
       $(".pay").hide();
       $(".settings").hide();
+    }
+    searchinput(event)
+    {
+      console.log(event.target.value);
+      this.setState({ searchcontacts: event.target.value });
     }
     render() {
     var style1 = {
@@ -84,7 +111,10 @@ class Chatlist extends Component {
               <p> CONTACTS </p>
               <ul>
               {contacts.map( contact =>
-                    <span id="contactspan"><li id="contact" key={contact.id} onClick={() => this.currentchat(contact.name, contact.id, contact.active, contact.color)}><img height="32px" width="32px"
+                    <span id="contactspan"><li id="contact" key={contact.id} onClick={() => this.currentchat(contact.name, contact.id, contact.active, contact.color)}
+                    hidden={this.searchfilter(contact.name,this.state.searchcontacts) && this.state.searchcontacts !== ""}
+                    >
+                    <img height="32px" width="32px"
                     src={contact.picture} 
                     /> {contact.name } 
                     <span className="lastactive"><span hidden={contact.active !== "yes"}><img 
@@ -96,7 +126,7 @@ class Chatlist extends Component {
               )}
               </ul>
                 <div id="search">
-                <input placeholder="Search" />
+                <input placeholder="Search" onChange={this.searchinput} id="searchbar"/>
               </div>
             </div>
           </div>

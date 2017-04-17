@@ -51,6 +51,7 @@ input
 span.speech {
   position: relative;
   max-width: 148px;
+  min-width: 20px;
   /*
   width: 200px;
   height: 50px;
