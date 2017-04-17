@@ -72,7 +72,7 @@ function sendmessage(id,str="",img="")
         if((str).length < 32)
         {
           $(".messages"+id).append(
-            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color:'+colorchat+ '" class="speech mychat">&nbsp;'+ str +'</span></li>'
+            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color:'+colorchat+ ';color: white;" class="speech mychat">&nbsp;'+ str +'</span></li>'
             );
         }
         else
@@ -80,7 +80,7 @@ function sendmessage(id,str="",img="")
           var tempstr = str;
           tempstr = linebreaker(tempstr, 27).join('&#13;&#10; &nbsp;');
           $(".messages"+id).append(
-            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color:'+colorchat+ '" class="speech mychat">&nbsp;'+ tempstr +'</span></li>'
+            '<li id="chatitem" style="padding-top: 15px; padding-bottom: 15px;"><span style="float:right; background-color:'+colorchat+ ';color: white;" class="speech mychat">&nbsp;'+ tempstr +'</span></li>'
             );        
         }    
   }
@@ -282,7 +282,7 @@ class Chatlogs extends Component {
             {chatlogs.map( message =>
                 <li key={message.id} id="chatitem"><img height="32px" width="32px" src={message.picture} hidden={message.name === "Me" || this.props.convo !== message.name}/>
                     <span className="speech otherchat" style={mychat} hidden={message.name === "Me" || this.props.id !== message.id}> {message.chatlogs.othermessage} </span>
-                    <span className="speech mychat" style={{float: "right",backgroundColor: message.color, marginTop: "20px"}} hidden={this.props.id !== message.chatlogs.mymessage_id}>
+                    <span className="speech mychat" style={{float: "right",backgroundColor: message.color, marginTop: "20px", color: "white"}} hidden={this.props.id !== message.chatlogs.mymessage_id}>
                     &nbsp; {message.chatlogs.mymessage} </span>
                 </li>
                         
