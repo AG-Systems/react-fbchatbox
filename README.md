@@ -5,7 +5,7 @@ Demo
 
 Giphy api:
 
-![](http://i.imgur.com/0OtjY7x.gif)
+![](http://i.imgur.com/FatG5G0.gif)
 
 Sending individual messages:
 
