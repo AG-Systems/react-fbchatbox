@@ -11,6 +11,9 @@ Sending individual messages:
 
 ![](http://i.imgur.com/Mr1Tp1G.gif)
 
+Search for contacts(still needs some work):
+
+![](http://i.imgur.com/29eDNAC.gif)
 
 ### Contributing
 
@@ -35,8 +38,10 @@ Add sticker card
 
 Fix some minor bugs
 
-Add search function in the chat 
-
 Mobile optimization
 
 Fully remove jquery
+
+Move everything to state (maybe use redux as well)
+
+*Disclamer: This is not perfect as I am only one person and I take no credit in the design. Only for the implementation*
