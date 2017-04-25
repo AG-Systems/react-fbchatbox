@@ -1,19 +1,19 @@
 Demo
 
-![](http://i.imgur.com/udEs769.gif)
+![](http://i.imgur.com/jFArq8a.gif)
 
 
 Giphy api:
 
-![](http://i.imgur.com/FatG5G0.gif)
+![](http://i.imgur.com/YKK8Dik.gif)
 
 Sending individual messages:
 
-![](http://i.imgur.com/lPGsfuy.gif)
+![](http://i.imgur.com/5wkwVPw.gif)
 
 Search for contacts(still needs some work):
 
-![](http://i.imgur.com/29eDNAC.gif)
+![](http://i.imgur.com/zvfIg18.gif)
 
 ### Contributing
 
