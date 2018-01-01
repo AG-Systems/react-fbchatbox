@@ -6,7 +6,7 @@ var io = require('socket.io')(http);
 /*
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/docs/');
-}); 
+});
 */
 app.use(express.static(__dirname + '/docs/'));
 

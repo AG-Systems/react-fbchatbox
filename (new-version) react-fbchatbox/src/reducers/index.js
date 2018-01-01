@@ -21,14 +21,19 @@ const task = (state, action) => {
                 return state;
             }
             let statusNum = statuses.indexOf(state.status);
+            let active = false;
             const nextStatus = 
                 statusNum === 1 // 2 
                 ? statuses[0] 
                 : statuses[statusNum + 1];
+            if(state.id === action.id)
+            {
+                active = true
+            }
             return {
                 ...state,
                 status: nextStatus,
-                active_chat: true,
+                active_chat: active,
             };
             
         case 'CHANGE_TO_ACTIVE_CHAT':
