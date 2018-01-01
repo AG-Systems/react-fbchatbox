@@ -1,5 +1,36 @@
 Demo
 
+# New version
+
+
+![](https://puu.sh/yRLQ8/b99f0e1942.gif)
+
+Real chat with other people on the site: 
+
+
+![](https://puu.sh/yKSVw/1b98e06600.png)
+
+
+![](https://puu.sh/yRMRd/219b85f6d5.png)
+
+
+Todo:
+
+Add emoji card
+
+Add the payment card
+
+Add sticker card
+
+Fix some minor bugs
+
+Improve mobile optimization
+
+Fully remove jquery(close) 
+
+# Old version 
+
+
 ![](http://i.imgur.com/jFArq8a.gif)
 
 
@@ -38,9 +69,9 @@ Add sticker card
 
 Fix some minor bugs
 
-Mobile optimization
+Mobile optimization 
 
-Fully remove jquery
+Fully remove jquery  
 
 Move everything to state (maybe use redux as well)
 
